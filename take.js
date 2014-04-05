@@ -1,17 +1,18 @@
 var $ = require('jquery');
+var _ = require('lodash');
 
-function makeUrl(packageName, version) {
+function makeUrl(packageName) {
   var mainUrl = 'http://wzrd.in/bundle/';
-  var versionUrlSegment = version ? "@" + version : "";
-  return mainUrl + packageName + versionUrlSegment;
+  return mainUrl + packageName;
 }
 
-function checkForErrors(packageName, version) {
-  if (!packageName) {throw new Error('please provide a package name');};
-
+function checkForErrors(response, packageName) {
+  if (response.status == 500) {
+    throw new Error('Module ' + packageName + ' was not found');
+  }
 }
 
-function syncGet(url) {
+function syncGet (url) {
   return $.ajax({
     type: "GET",
     url: url,
@@ -19,9 +20,10 @@ function syncGet(url) {
   });
 }
 
-window.take = function(packageName, version) {
-  checkForErrors(packageName, version);
-  var url = makeUrl(packageName, version);
+window.take = _.memoize(function(packageName) {
+  if (!packageName) {throw new Error('please provide a package name');};
+  var url = makeUrl(packageName, packageName);
   var response = syncGet(url);
+  checkForErrors(response);
   return eval(response.responseText)(packageName);
-}
+});

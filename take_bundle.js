@@ -15911,7 +15911,7 @@ function makeUrl(packageName) {
 
 function checkForErrors(response, packageName) {
   if (response.status == 500) {
-    throw new Error('Module ' + packageName + ' was not found');
+    throw new Error('Module "' + packageName + '" was not found');
   }
 }
 
@@ -15925,9 +15925,9 @@ function syncGet (url) {
 
 window.take = _.memoize(function(packageName) {
   if (!packageName) {throw new Error('please provide a package name');};
-  var url = makeUrl(packageName, packageName);
+  var url = makeUrl(packageName);
   var response = syncGet(url);
-  checkForErrors(response);
+  checkForErrors(response, packageName);
   return eval(response.responseText)(packageName);
 });
 

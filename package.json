@@ -1,0 +1,14 @@
+{
+  "name": "take",
+  "version": "0.0.0",
+  "description": "Use npm in Chrome. Implemented as an extension, uses [Browserify CDN](www.wzrd.in.nyud.net) to acquire the pakcages.",
+  "main": "take.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aulme/take.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aulme/take/issues"
+  },
+  "homepage": "https://github.com/aulme/take"
+}

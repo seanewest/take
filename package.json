@@ -10,5 +10,9 @@
   "bugs": {
     "url": "https://github.com/aulme/take/issues"
   },
-  "homepage": "https://github.com/aulme/take"
+  "homepage": "https://github.com/aulme/take",
+  "dependencies": {
+    "jquery": "^2.1.1",
+    "lodash": "^2.4.1"
+  }
 }

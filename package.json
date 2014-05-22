@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Use npm in Chrome. Implemented as an extension, uses [Browserify CDN](www.wzrd.in.nyud.net) to acquire the pakcages.",
   "main": "take.js",
+  "scripts": {
+    "build": "node_modules/.bin/browserify take.js > take_bundle.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/aulme/take.git"
@@ -14,5 +17,8 @@
   "dependencies": {
     "jquery": "^2.1.1",
     "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "browserify": "^4.1.5"
   }
 }

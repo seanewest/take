@@ -1,5 +1,5 @@
 var xhr = require('xhr');
-var _ = require('lodash');
+var memoize = require('memoizejs');
 
 function makeUrl(packageName) {
   var mainUrl = 'http://wzrd.in/bundle/';
@@ -20,7 +20,7 @@ function syncGet (url) {
   }, function(e,r,b){/*empty b/c not async*/;});
 }
 
-window.take = _.memoize(function(packageName) {
+window.take = memoize(function(packageName) {
   if (!packageName) {throw new Error('please provide a package name');};
   var url = makeUrl(packageName);
   var response = syncGet(url);

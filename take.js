@@ -1,4 +1,4 @@
-var $ = require('jquery');
+var xhr = require('xhr');
 var _ = require('lodash');
 
 function makeUrl(packageName) {
@@ -13,11 +13,11 @@ function checkForErrors(response, packageName) {
 }
 
 function syncGet (url) {
-  return $.ajax({
-    type: "GET",
-    url: url,
-    async: false
-  });
+  return xhr({
+    method: "GET",
+    uri: url,
+    sync: true
+  }, function(e,r,b){/*empty b/c not async*/;});
 }
 
 window.take = _.memoize(function(packageName) {
